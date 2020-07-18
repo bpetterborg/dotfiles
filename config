@@ -1,0 +1,83 @@
+# startup
+set $mod Mod4
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+bindsym $mod+Return exec rxvt-unicode
+bindsym $mod+d exec rofi -show run -theme ~/nord-rofi/nord.rasi
+exec xrdb -merge ~/.Xresources
+exec xrandr --output DVI-I-0 --off --output DVI-I-1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI-0 --mode 1280x1024 --pos 1600x0 --rotate normal --output DP-0 --mode 1600x900 --pos 2880x0 --rotate normal --output DVI-D-0 --mode 1600x900 --pos 4480x0 --rotate left --output DP-1 --off
+exec --no-startup-id feh --bg-fill wall.jpg
+
+# window controls
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+c kill
+
+# ws
+set $ws1 "240a1"
+set $ws2 "240a2"
+set $ws3 "240a3"
+set $ws4 "240a4"
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+
+# restart/exit i3
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Kill XSession?.' -B 'Exit' 'i3-msg exit'"
+
+# resize windows
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# i3bar
+bar {
+        status_command i3status
+}
+
+# gaps
+for_window [class=".*"] border pixel 0
+gaps inner 20
+gaps outer 20
+gaps horizontal 64
+border_radius 10
