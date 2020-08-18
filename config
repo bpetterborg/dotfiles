@@ -1,17 +1,7 @@
 set $mod Mod4
-set $ws1 "240a1"
-set $ws2 "240a2"
-set $ws3 "240a3"
-set $ws4 "240a4"
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 exec xrdb -merge ~/.Xresources
-#exec xrandr --output DVI-I-1 --primary --mode 1600x900 --pos 900x0 --rotate normal --output DVI-D-1 --mode 1600x900 --pos 0x0 --rotate left --output HDMI-1 --mode 1280x1024 --pos 4100x0 --rotate normal --output DP-1 --mode 1600x900 --pos 2500x0 --rotate normal
-exec --no-startup-id feh --bg-fill ~/wall.jpg
-for_window [class=".*"] border pixel 0
-gaps inner 32
-gaps outer 16
-gaps horizontal 32
-border_radius 8
+exec xsetroot -solid "#2E3440"
 
 bindsym $mod+Return exec urxvt
 bindsym $mod+f exec firefox
@@ -19,7 +9,7 @@ bindsym $mod+g exec code-oss
 bindsym $mod+c kill
 bindsym $mod+d exec rofi -show run -config ~/nord-rofi/nord.rasi
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "Kill XSession?' -B 'Exit' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "Kill i3wm?' -B 'Exit' 'i3-msg exit'"
 bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+space focus mode_toggle
@@ -40,3 +30,24 @@ mode "resize" {
         bindsym l resize grow width 10 px or 10 ppt
         bindsym Return mode "default"
 }
+
+bar {
+        colors {
+                background #3B4252
+                separator #268bd2
+                statusline #D8DEE9
+                focused_workspace #D8DEE9 #2E3440 #D8DEE9
+                active_workspace #D8DEE9 #2E3440 #D8DEE9
+                inactive_workspace #4C566A #2E3440 #4C566A
+                urgent_workspace #4C566A #2E440 #4C566A
+        }
+        status_command i3blocks
+        position top
+}
+
+client.focused          #5381AC #5381AC #D8DEE9 #5E81AC   #5381AC
+client.focused_inactive #2E3440 #2E3440 #D8DEE9 #484e50   #2E3440
+client.unfocused        #2E3440 #2E3440 #888888 #292d2e   #2E3440
+client.urgent           #2f343a #900000 #D8DEE9 #900000   #900000
+client.placeholder      #2E3440 #0c0c0c #D8DEE9 #2E3440   #0c0c0c
+client.background       #D8DEE9
