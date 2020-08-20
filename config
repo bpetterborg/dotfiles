@@ -1,4 +1,6 @@
 set $mod Mod4
+set $ws1 "1"
+set $ws2 "2"
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 exec xrdb -merge ~/.Xresources
 exec xsetroot -solid "#2E3440"
@@ -22,6 +24,10 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
 
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
