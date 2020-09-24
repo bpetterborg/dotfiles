@@ -1,13 +1,11 @@
 # dotfiles
 
 ### Contents
-Gruvbox Vim-Like i3wm
+-Gruvbox Vim-Like i3wm
+-Gruvbox ~/.Xresources
+-Basic Vim config
 
-Gruvbox ~/.Xresources
-
-Basic Vim config
-
-### dependancies
+### Dependancies
 - i3wm
 - xbanish
 - ProggyCleanTT (font)
