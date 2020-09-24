@@ -1,21 +1,33 @@
 set $mod Mod4
-set $ws1 "1"
-set $ws2 "2"
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+set $ws1 "ke8omv@x220"
+set $ws2 "ke8omv@x220-2"
+font pango: ProggyCleanTT 12
+exec xsetroot -solid "#504945"
 exec xrdb -merge ~/.Xresources
-exec xsetroot -solid "#2E3440"
+exec --no-startup-id xbanish
+exec setxkbmap -option caps:super
+exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI3 --off --output VGA1 --off --output VIRTUAL1 --off
 
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec mate-terminal 
 bindsym $mod+f exec firefox
-bindsym $mod+g exec code-oss
-bindsym $mod+c kill
-bindsym $mod+d exec rofi -show run -config ~/nord-rofi/nord.rasi
+bindsym $mod+o exec thunar
+bindsym $mod+p exec cura
+bindsym $mod+g exec code-oss 
+bindsym $mod+c kill 
+bindsym $mod+i exec rofi -show run -font "ProggyCleanTT 14" #-config ~/.nord.rasi
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "Kill i3wm?' -B 'Exit' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Kill i3wm?' -B 'Exit' 'i3-msg exit'"
+bindsym $mod+Shift+q exec i3lock -c 000000
+
 bindsym $mod+b split h
 bindsym $mod+v split v
 bindsym $mod+space focus mode_toggle
 bindsym $mod+r mode "resize"
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -24,36 +36,44 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
         bindsym Return mode "default"
 }
 
 bar {
         colors {
-                background #3B4252
-                separator #268bd2
-                statusline #D8DEE9
-                focused_workspace #D8DEE9 #2E3440 #D8DEE9
-                active_workspace #D8DEE9 #2E3440 #D8DEE9
-                inactive_workspace #4C566A #2E3440 #4C566A
-                urgent_workspace #4C566A #2E440 #4C566A
+                background #282828
+                separator #282828
+                statusline #ebdbb2
+                focused_workspace #282828 #282828 #ebdbb2
+                active_workspace #282828 #282828 #ebdbb2
+                inactive_workspace #282828 #282828 #ebdbb2
+                urgent_workspace #282828 #282828 #ebdbb2
         }
-        status_command i3blocks
+        status_command i3status
         position top
 }
 
-client.focused          #5381AC #5381AC #D8DEE9 #5E81AC   #5381AC
-client.focused_inactive #2E3440 #2E3440 #D8DEE9 #484e50   #2E3440
-client.unfocused        #2E3440 #2E3440 #888888 #292d2e   #2E3440
-client.urgent           #2f343a #900000 #D8DEE9 #900000   #900000
-client.placeholder      #2E3440 #0c0c0c #D8DEE9 #2E3440   #0c0c0c
-client.background       #D8DEE9
+client.focused          #7c6f64 #7c6f64 #ebdbb2 #7c6f64  #7c6f64
+client.focused_inactive #3c3936 #3c3936 #ebdbb2 #3c3936  #3c3936
+client.unfocused       #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
+client.urgent          #ebcb8b #ebcb8b #ebdbb2 #ebcb8b   #ebcb8b
+client.placeholder     #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
+client.background      #ebdbb2
