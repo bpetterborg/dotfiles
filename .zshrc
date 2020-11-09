@@ -16,6 +16,8 @@ source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # powershell-like aliases
 alias Restart-Computer="sudo reboot"
 alias Stop-Computer="sudo shutdown now"
+alias Get-SystemInfo="neofetch"
+alias LinuxVer="neofetch"
 
 alias Get-ChildItem="ls"
 alias Get-Help="man"
@@ -42,7 +44,7 @@ Set-Location() {
 alias Get-SystemUpdate="sudo apt update && apt list -u && sudo apt autoremove && sudo apt upgrade"
 alias Get-Package="sudo apt install"
 alias Get-UpdateSources="sudo apt update"
-alias Get-UpdatablePackages
+alias Get-UpdatablePackages="apt list -u"
 alias Remove-Package="sudo apt purge"
 alias AutoRemove-Package="sudo apt autoremove"
 
