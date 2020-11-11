@@ -29,6 +29,8 @@ alias Write-Output="echo"
 alias Get-Alias="alias"
 alias Stop-Process="kill"
 alias Move-Item="mv"
+alias Make-Directory="mkdir"
+alias Remove-Directory="rmdir"
 alias Change-ItemProperty="chmod"
 
 Set-Location() {
@@ -51,3 +53,4 @@ alias AutoRemove-Package="sudo apt autoremove"
 alias Start-Service="sudo systemctl start"
 alias Invoke-WebRequest="curl"
 alias Start-DesktopEnvironment="startx"
+alias Enable-Multiplexer="tmux"
