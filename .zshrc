@@ -9,8 +9,8 @@ plugins=(git)
 
 # load extensions
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 # powershell-like aliases
@@ -54,3 +54,6 @@ alias Start-Service="sudo systemctl start"
 alias Invoke-WebRequest="curl"
 alias Start-DesktopEnvironment="startx"
 alias Enable-Multiplexer="tmux"
+
+# path for gcc arm
+export PATH=$PATH:/home/ke8omv/gcc-arm-none-eabi-8-2019-q3-update/bin/
