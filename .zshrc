@@ -1,17 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# zsh config file
 
-# Path to your oh-my-zsh installation.
-export ZSH="/home/ke8omv/.oh-my-zsh"
-ZSH_THEME="fishy"
+export ZSH="/home/ben/.oh-my-zsh"
+
+# theme
+ZSH_THEME="risto" # risto, fishy, kardan
+
+# extensions
 plugins=(git)
-
-
-# load extensions
-source $ZSH/oh-my-zsh.sh
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 
 # powershell-like aliases
 alias Restart-Computer="sudo reboot"
@@ -55,5 +50,8 @@ alias Invoke-WebRequest="curl"
 alias Start-DesktopEnvironment="startx"
 alias Enable-Multiplexer="tmux"
 
-# path for gcc arm
-export PATH=$PATH:/home/ke8omv/gcc-arm-none-eabi-8-2019-q3-update/bin/
+source $ZSH/oh-my-zsh.sh
+source /home/ben/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fetch
+neofetch
