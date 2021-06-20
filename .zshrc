@@ -1,57 +1,44 @@
-# zsh config file
+# If you come from bash you might have to change your $PATH.
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Path to your oh-my-zsh installation.
 export ZSH="/home/ben/.oh-my-zsh"
 
-# theme
-ZSH_THEME="risto" # risto, fishy, kardan
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-# extensions
+# load plugins
 plugins=(git)
-
-# powershell-like aliases
-alias Restart-Computer="sudo reboot"
-alias Stop-Computer="sudo shutdown now"
-alias Get-SystemInfo="neofetch"
-alias LinuxVer="neofetch"
-
-alias Get-ChildItem="ls"
-alias Get-Help="man"
-alias Get-Content="cat"
-alias Clear-Host="clear"
-alias Copy-Item="cp"
-alias Remove-Item="rm"
-alias Write-Output="echo"
-alias Get-Alias="alias"
-alias Stop-Process="kill"
-alias Move-Item="mv"
-alias Make-Directory="mkdir"
-alias Remove-Directory="rmdir"
-alias Change-ItemProperty="chmod"
-
-Set-Location() {
-        local dir="$1"
-        local dir="${dir:=$HOME}"
-        if [[ -d "$dir" ]]; then
-                cd "$dir" >/dev/null; ls --color=auto
-        else
-                echo "zsh: Set-Location: $dir: Directory not found"
-        fi
-}
-
-alias Get-SystemUpdate="sudo apt update && apt list -u && sudo apt autoremove && sudo apt upgrade"
-alias Get-Package="sudo apt install"
-alias Get-UpdateSources="sudo apt update"
-alias Get-UpdatablePackages="apt list -u"
-alias Remove-Package="sudo apt purge"
-alias AutoRemove-Package="sudo apt autoremove"
-
-alias Start-Service="sudo systemctl start"
-alias Invoke-WebRequest="curl"
-alias Start-DesktopEnvironment="startx"
-alias Enable-Multiplexer="tmux"
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source $ZSH/oh-my-zsh.sh
-source /home/ben/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# fetch
-neofetch
+#CASE_SENSITIVE="true"
+#HYPHEN_INSENSITIVE="true"
+
+#DISABLE_AUTO_UPDATE="true"
+# Uncomment the following line to automatically update without prompting.
+#DISABLE_UPDATE_PROMPT="true"
+
+#export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+#DISABLE_MAGIC_FUNCTIONS="true"
+
+#DISABLE_LS_COLORS="true"
+DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="true"
+#COMPLETION_WAITING_DOTS="true"
+#DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+
+# some aliases
+alias reboot="sudo reboot"
+alias "shutdown now"="sudo shutdown now"
+alias systemctl="sudo systemctl"
+alias pacman="sudo pacman"
+
+function getrep(){
+    git clone https://github.com/USERNAME/$1.git
+}
