@@ -1,23 +1,23 @@
 set $mod Mod4
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-font pango: ProggyCleanTT 12
-exec xsetroot -solid "#504945"
-exec xrdb -merge ~/.Xresources
+set $ws1 " 1 "
+set $ws2 " 2 "
+set $ws3 " 3 "
+set $ws4 " 4 "
+font pango:Source Han Mono 9
+feh --bg-tile ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
+exec setxkbmap -option caps:ctrl
 exec --no-startup-id xbanish
 exec setxkbmap -option caps:super
 exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI3 --off --output VGA1 --off --output VIRTUAL1 --off
 
-bindsym $mod+Return exec mate-terminal 
+bindsym $mod+Return exec gnome-terminal 
 bindsym $mod+f exec firefox
 bindsym $mod+o exec thunar
 bindsym $mod+g exec code 
 bindsym $mod+c kill 
-bindsym $mod+i exec rofi -show run -font "ProggyCleanTT 14"
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Kill i3wm?' -B 'Exit' 'i3-msg exit'"
+bindsym Mod1+space exec rofi -show run
+bindsym $mod+Shift+r restart   
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '終了 i3wm?' -B 'はい' 'i3-msg exit'"
 bindsym $mod+Shift+q exec i3lock -c 000000
 
 bindsym $mod+b split h
