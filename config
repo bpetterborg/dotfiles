@@ -4,7 +4,7 @@ set $ws2 " 2 "
 set $ws3 " 3 "
 set $ws4 " 4 "
 font pango:Source Han Mono 9
-feh --bg-tile ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
+feh --bg-tile ~/ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
 exec setxkbmap -option caps:ctrl
 exec --no-startup-id xbanish
 exec setxkbmap -option caps:super
@@ -68,7 +68,7 @@ bar {
                 #inactive_workspace #282828 #282828 #ebdbb2
                 #urgent_workspace #282828 #282828 #ebdbb2
         }
-        status_command i3status
+        status_command i3status --command ~/.config/i3status.conf
         position top
 }
 
