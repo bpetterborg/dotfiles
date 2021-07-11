@@ -1,8 +1,8 @@
 set $mod Mod4
-set $ws1 " 1 "
-set $ws2 " 2 "
-set $ws3 " 3 "
-set $ws4 " 4 "
+set $ws1 "一"
+set $ws2 "二"
+set $ws3 "三"
+set $ws4 "四"
 font pango:Source Han Mono 9
 exec feh --bg-tile ~/ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
 exec setxkbmap -option caps:ctrl
@@ -40,8 +40,12 @@ bindsym $mod+Shift+l move right
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
@@ -61,7 +65,7 @@ mode "resize" {
 bar {
         colors {
                 background #000000
-                separator #000000
+                separator #333333
                 #statusline #ebdbb2
                 #focused_workspace #282828 #282828 #ebdbb2
                 #active_workspace #282828 #282828 #ebdbb2
