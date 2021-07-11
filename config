@@ -1,6 +1,8 @@
 set $mod Mod4
-set $ws1 "ke8omv@x220"
-set $ws2 "ke8omv@x220-2"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 font pango: ProggyCleanTT 12
 exec xsetroot -solid "#504945"
 exec xrdb -merge ~/.Xresources
@@ -11,10 +13,9 @@ exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate norm
 bindsym $mod+Return exec mate-terminal 
 bindsym $mod+f exec firefox
 bindsym $mod+o exec thunar
-bindsym $mod+p exec cura
-bindsym $mod+g exec code-oss 
+bindsym $mod+g exec code 
 bindsym $mod+c kill 
-bindsym $mod+i exec rofi -show run -font "ProggyCleanTT 14" #-config ~/.nord.rasi
+bindsym $mod+i exec rofi -show run -font "ProggyCleanTT 14"
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Kill i3wm?' -B 'Exit' 'i3-msg exit'"
 bindsym $mod+Shift+q exec i3lock -c 000000
@@ -59,21 +60,21 @@ mode "resize" {
 
 bar {
         colors {
-                background #282828
-                separator #282828
-                statusline #ebdbb2
-                focused_workspace #282828 #282828 #ebdbb2
-                active_workspace #282828 #282828 #ebdbb2
-                inactive_workspace #282828 #282828 #ebdbb2
-                urgent_workspace #282828 #282828 #ebdbb2
+                background #000000
+                separator #000000
+                #statusline #ebdbb2
+                #focused_workspace #282828 #282828 #ebdbb2
+                #active_workspace #282828 #282828 #ebdbb2
+                #inactive_workspace #282828 #282828 #ebdbb2
+                #urgent_workspace #282828 #282828 #ebdbb2
         }
         status_command i3status
         position top
 }
 
-client.focused          #7c6f64 #7c6f64 #ebdbb2 #7c6f64  #7c6f64
-client.focused_inactive #3c3936 #3c3936 #ebdbb2 #3c3936  #3c3936
-client.unfocused       #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-client.urgent          #ebcb8b #ebcb8b #ebdbb2 #ebcb8b   #ebcb8b
-client.placeholder     #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-client.background      #ebdbb2
+#client.focused          #7c6f64 #7c6f64 #ebdbb2 #7c6f64  #7c6f64
+#client.focused_inactive #3c3936 #3c3936 #ebdbb2 #3c3936  #3c3936
+#client.unfocused       #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
+#client.urgent          #ebcb8b #ebcb8b #ebdbb2 #ebcb8b   #ebcb8b
+#client.placeholder     #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
+#client.background      #ebdbb2
