@@ -1,84 +1,53 @@
-set $mod Mod4
-set $ws1 "一"
-set $ws2 "二"
-set $ws3 "三"
-set $ws4 "四"
-font pango:Source Han Mono 9
-exec feh --bg-tile ~/ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
-exec setxkbmap -option caps:ctrl
-exec --no-startup-id xbanish
-exec setxkbmap -option caps:super
-exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI3 --off --output VGA1 --off --output VIRTUAL1 --off
+# i3status configuration file.
+# see "man i3status" for documentation.
 
-bindsym $mod+Return exec gnome-terminal 
-bindsym $mod+f exec firefox
-bindsym $mod+o exec thunar
-bindsym $mod+g exec code 
-bindsym $mod+c kill 
-bindsym Mod1+space exec rofi -show run
-bindsym $mod+Shift+r restart   
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '終了 i3wm?' -B 'はい' 'i3-msg exit'"
-bindsym $mod+Shift+q exec i3lock -c 000000
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
 
-bindsym $mod+b split h
-bindsym $mod+v split v
-bindsym $mod+space focus mode_toggle
-bindsym $mod+r mode "resize"
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
-
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
-
-mode "resize" {
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
-        bindsym Return mode "default"
+general {
+        colors = true
+        interval = 5
 }
 
-bar {
-        colors {
-                background #000000
-                separator #333333
-                #statusline #ebdbb2
-                #focused_workspace #282828 #282828 #ebdbb2
-                #active_workspace #282828 #282828 #ebdbb2
-                #inactive_workspace #282828 #282828 #ebdbb2
-                #urgent_workspace #282828 #282828 #ebdbb2
-        }
-        status_command i3status --config ~/.config/i3status.conf
-        position top
+#order += "ipv6"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery all"
+#order += "disk /"
+#order += "load"
+order += "memory"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = "W:%quality %ip"
+        format_down = ""
 }
 
-#client.focused          #7c6f64 #7c6f64 #ebdbb2 #7c6f64  #7c6f64
-#client.focused_inactive #3c3936 #3c3936 #ebdbb2 #3c3936  #3c3936
-#client.unfocused       #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-#client.urgent          #ebcb8b #ebcb8b #ebdbb2 #ebcb8b   #ebcb8b
-#client.placeholder     #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-#client.background      #ebdbb2
+ethernet _first_ {
+        format_up = "E: %ip (%speed)"
+        format_down = ""
+}
+
+battery all {
+        format = "%status %percentage %remaining"
+}
+
+disk "/" {
+        format = "%avail"
+}
+
+load {
+        format = "%1min"
+}
+
+memory {
+        format = "%used"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
