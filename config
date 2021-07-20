@@ -3,14 +3,15 @@ set $ws1 "一"
 set $ws2 "二"
 set $ws3 "三"
 set $ws4 "四"
-font pango:Source Han Mono 9
-exec feh --bg-tile ~/ダウンロード/cdetheme1.3/cdetheme/backdrops/bg.png
-exec setxkbmap -option caps:ctrl
-exec --no-startup-id xbanish
-exec setxkbmap -option caps:super
+
+font pango:Source Han Mono 10
+exec feh --bg-tile ~/Downloads/dotfiles/bg.png
+exec setxkbmap -option "ctrl:nocaps"
+exec setxkbmap -option "ctrl:caps"
+
 exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI3 --off --output VGA1 --off --output VIRTUAL1 --off
 
-bindsym $mod+Return exec gnome-terminal 
+bindsym $mod+Return exec mate-terminal 
 bindsym $mod+f exec firefox
 bindsym $mod+o exec thunar
 bindsym $mod+g exec code 
@@ -46,6 +47,9 @@ bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
+
+bindsym F9 exec --no-startup-id bluetoothctl disconnect
+bindsym F10 exec --no-startup-id ~/Scripts/pair-bt-hp.sh
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
