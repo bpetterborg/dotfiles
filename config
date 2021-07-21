@@ -1,88 +1,140 @@
-set $mod Mod4
-set $ws1 "一"
-set $ws2 "二"
-set $ws3 "三"
-set $ws4 "四"
+#################
+# swaywm config #
+#################
 
-font pango:Source Han Mono 10
-exec feh --bg-tile ~/Downloads/dotfiles/bg.png
-exec setxkbmap -option "ctrl:nocaps"
-exec setxkbmap -option "ctrl:caps"
+# run on start
+	input * xkb_options "ctrl:swapcaps"
 
-exec xrandr --output LVDS1 --primary --mode 1366x768 --pos 117x900 --rotate normal --output DP1 --off --output DP2 --off --output DP3 --off --output HDMI1 --mode 1600x900 --pos 0x0 --rotate normal --output HDMI2 --off --output HDMI3 --off --output VGA1 --off --output VIRTUAL1 --off
 
-bindsym $mod+Return exec mate-terminal 
-bindsym $mod+f exec firefox
-bindsym $mod+o exec thunar
-bindsym $mod+g exec code 
-bindsym $mod+c kill 
-bindsym Mod1+space exec rofi -show run
-bindsym $mod+Shift+r restart   
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '終了 i3wm?' -B 'はい' 'i3-msg exit'"
-bindsym $mod+Shift+q exec i3lock -c 000000
+# variables
+	set $mod Mod4
 
-bindsym $mod+b split h
-bindsym $mod+v split v
-bindsym $mod+space focus mode_toggle
-bindsym $mod+r mode "resize"
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
+	set $left h
+	set $down j
+	set $up k
+	set $right l
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+	set $term mate-terminal
+	set $menu wofi --show run | xargs swaymsg exec -- 
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
+	set $ws1 一
+	set $ws2 二
+	set $ws3 三
+	set $ws4 四
+	set $ws5 五
+	set $ws6 六
+	set $ws7 七
+	set $ws8 八
+	set $ws9 九
+	set $ws10 十
 
-bindsym F9 exec --no-startup-id bluetoothctl disconnect
-bindsym F10 exec --no-startup-id ~/Scripts/pair-bt-hp.sh
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
+output * bg ~/Code/dotfiles/Pictures/skK5O.jpg fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+# sleep after no use
+exec swayidle -w \
+		 timeout 300 'swaylock -f -c 000000' \
+		 timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+		 before-sleep 'swaylock -f -c 000000'
 
-mode "resize" {
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
-        bindsym Return mode "default"
+# Keybinds
+	bindsym $mod+Return exec $term
+	bindsym $mod+c kill
+	bindsym Mod1+space exec $menu
+	bindsym $mod+Shift+r reload
+	floating_modifier $mod normal
+	bindsym $mod+Shift+e exec swaynag -t warning -m '終了 WM' -b 'はい' 'swaymsg exit'
+
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move upS
+	bindsym $mod+Shift+$right move right
+
+	bindsym $mod+1 workspace number $ws1
+	bindsym $mod+2 workspace number $ws2
+	bindsym $mod+3 workspace number $ws3
+	bindsym $mod+4 workspace number $ws4
+	bindsym $mod+5 workspace number $ws5
+	bindsym $mod+6 workspace number $ws6
+	bindsym $mod+7 workspace number $ws7
+	bindsym $mod+8 workspace number $ws8
+	bindsym $mod+9 workspace number $ws9
+	bindsym $mod+0 workspace number $ws10
+
+	bindsym $mod+Shift+1 move container to workspace number $ws1
+	bindsym $mod+Shift+2 move container to workspace number $ws2
+	bindsym $mod+Shift+3 move container to workspace number $ws3
+	bindsym $mod+Shift+4 move container to workspace number $ws4
+	bindsym $mod+Shift+5 move container to workspace number $ws5
+	bindsym $mod+Shift+6 move container to workspace number $ws6
+	bindsym $mod+Shift+7 move container to workspace number $ws7
+	bindsym $mod+Shift+8 move container to workspace number $ws8
+	bindsym $mod+Shift+9 move container to workspace number $ws9
+	bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+
+# Layout
+
+	bindsym $mod+b splith
+	bindsym $mod+v splitv
+
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+
+	bindsym $mod+Shift+space floating toggle
+	bindsym $mod+space focus mode_toggle
+	bindsym $mod+a focus parent
+
+# App keybinds
+	
+	bindsym $mod+f exec firefox
+	bindsym $mod+o exec thunar
+
+# Resize mode
+mode "リサイズ" {
+
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
+bindsym $mod+r mode "リサイズ"
 
+# bar
 bar {
-        colors {
-                background #000000
-                separator #333333
-                #statusline #ebdbb2
-                #focused_workspace #282828 #282828 #ebdbb2
-                #active_workspace #282828 #282828 #ebdbb2
-                #inactive_workspace #282828 #282828 #ebdbb2
-                #urgent_workspace #282828 #282828 #ebdbb2
-        }
-        status_command i3status --config ~/.config/i3status.conf
-        position top
+	position top
+
+	# When the status_command prints a new line to stdout, swaybar updates.
+	# The default just shows the current date and time.
+	status_command i3status --config ~/.config/i3status.conf
+
+	colors {
+		statusline #CCCCCC
+		background #303030
+		inactive_workspace #32323200 #32323200 #5c5c5c
+	}
 }
 
-#client.focused          #7c6f64 #7c6f64 #ebdbb2 #7c6f64  #7c6f64
-#client.focused_inactive #3c3936 #3c3936 #ebdbb2 #3c3936  #3c3936
-#client.unfocused       #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-#client.urgent          #ebcb8b #ebcb8b #ebdbb2 #ebcb8b   #ebcb8b
-#client.placeholder     #3c3936 #3c3936 #ebdbb2 #3c3936   #3c3936
-#client.background      #ebdbb2
+
+
+include @sysconfdir@/sway/config.d/*
+
+gaps inner 16
