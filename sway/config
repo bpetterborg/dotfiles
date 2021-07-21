@@ -1,0 +1,158 @@
+#################
+# swaywm config #
+#################
+
+# run on start
+	input * xkb_options "ctrl:swapcaps"
+
+
+# variables
+	set $mod Mod4
+
+	set $left h
+	set $down j
+	set $up k
+	set $right l
+
+	set $term mate-terminal
+	set $menu wofi --show run | xargs swaymsg exec -- 
+
+	set $ws1 一
+	set $ws2 二
+	set $ws3 三
+	set $ws4 四
+	set $ws5 五
+	set $ws6 六
+	set $ws7 七
+	set $ws8 八
+	set $ws9 九
+	set $ws10 十
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
+output * bg ~/Code/dotfiles/Pictures/skK5O.jpg fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# sleep after no use
+exec swayidle -w \
+		 timeout 300 'swaylock -f -c 000000' \
+		 timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+		 before-sleep 'swaylock -f -c 000000'
+
+# Keybinds
+	bindsym $mod+Return exec $term
+	bindsym $mod+c kill
+	bindsym Mod1+space exec $menu
+	bindsym $mod+Shift+r reload
+	floating_modifier $mod normal
+	bindsym $mod+Shift+e exec swaynag -t warning -m '終了 WM' -b 'はい' 'swaymsg exit'
+
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
+
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+7 workspace $ws7
+	bindsym $mod+8 workspace $ws8
+	bindsym $mod+9 workspace $ws9
+	bindsym $mod+0 workspace $ws10
+
+	bindsym $mod+Shift+1 move container to workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6
+	bindsym $mod+Shift+7 move container to workspace $ws7
+	bindsym $mod+Shift+8 move container to workspace $ws8
+	bindsym $mod+Shift+9 move container to workspace $ws9
+	bindsym $mod+Shift+0 move container to workspace $ws10
+
+
+
+# Layout
+
+	bindsym $mod+b splith
+	bindsym $mod+v splitv
+
+	bindsym $mod+s layout stacking
+	bindsym $mod+w layout tabbed
+	bindsym $mod+e layout toggle split
+
+	bindsym $mod+Shift+space floating toggle
+	bindsym $mod+space focus mode_toggle
+	bindsym $mod+a focus parent
+
+# App keybinds
+	
+	bindsym $mod+f exec firefox
+	bindsym $mod+o exec thunar
+
+# Resize mode
+mode "リサイズ" {
+
+	bindsym $left resize shrink width 10px
+	bindsym $down resize grow height 10px
+	bindsym $up resize shrink height 10px
+	bindsym $right resize grow width 10px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "リサイズ"
+
+# bar
+bar {
+	position top
+
+	# When the status_command prints a new line to stdout, swaybar updates.
+	# The default just shows the current date and time.
+	status_command i3status --config ~/.config/i3status.conf
+
+	colors {
+		statusline #404040
+		background #D9D9D9
+		separator #505050FF
+		
+		# name		 	border	  bg	    text
+		focused_workspace 	#75B5AAFF #6A9FB5FF #404040
+		active_workspace	#E0E0E0FF #D0D0D0FF #404040
+		inactive_workspace 	#E0E0E0FF #D0D0D0FF #404040
+		urgent_workspace	#E0E0E0FF #AC4142FF #404040
+		
+	}
+}
+
+
+
+include @sysconfdir@/sway/config.d/*
+
+gaps inner 16
+
+
+# class			border	bg	text	id	childborder
+client.focused		#75b5aa	#6a9fb5 #303030	#6a9fb5	#75b5aa
+client.focused_inactive #e0e0e0	#d0d0d0	#505050	#d0d0d0 #e0e0e0
+client.unfocused	#e0e0e0	#d0d0d0 #505050	#d0d0d0 #e0e0e0
+client.urgent		#f4bf75 #d0d0d0 #505050 #d0d0d0 #f4bf75
+
+
+
+
