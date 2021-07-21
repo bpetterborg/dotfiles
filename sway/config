@@ -5,6 +5,12 @@
 # run on start
 	input * xkb_options "ctrl:swapcaps"
 
+	set $gnome-schema org.gnome.desktop.interface
+	exec_always {
+		gsettings set $gnome-schema gtk-theme 'ChromeOS-light-compact'
+		gsettings set $gnome-schema icon-theme 'Newaita'
+		gsettings set $gnome-schema cursor-theme 'retrosmart-xcursor-black'
+	}
 
 # variables
 	set $mod Mod4
@@ -28,16 +34,10 @@
 	set $ws9 九
 	set $ws10 十
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
+# output config
 output * bg ~/Code/dotfiles/Pictures/skK5O.jpg fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+#output HDMI-A-1 resolution 1920x1080 position 1920,0
+#get outputs w/: swaymsg -t get_outputs
 
 # sleep after no use
 exec swayidle -w \
@@ -104,6 +104,8 @@ exec swayidle -w \
 	
 	bindsym $mod+f exec firefox
 	bindsym $mod+o exec thunar
+	bindsym $mod+g exec /usr/share/code/code --no-sandbox
+
 
 # Resize mode
 mode "リサイズ" {
@@ -124,11 +126,11 @@ bar {
 	status_command i3status --config ~/.config/i3status.conf
 
 	colors {
-		statusline #414141
-		background #D9D9D9
-		separator #505050FF
+		statusline	#414141
+		background	#D9D9D9
+		separator	#505050
 		
-		# name		 	border	bg	text
+		# name		 		border	bg	text
 		focused_workspace 	#75B5AA	#6A9FB5	#404040
 		active_workspace	#E0E0E0	#D0D0D0	#404040
 		inactive_workspace 	#E0E0E0	#D0D0D0	#404040
@@ -142,13 +144,14 @@ bar {
 include @sysconfdir@/sway/config.d/*
 
 gaps inner 16
-gaps outer 32
+gaps outer 18
 
-# class			border	bg	text	id	childborder
-client.focused		#75B5AA	#6A9FB5 #303030	#6A9FB5	#75B5AA
+# class					border	bg		text	id	childborder
+client.focused			#75B5AA	#6A9FB5 #303030	#6A9FB5	#75B5AA
 client.focused_inactive #E0E0E0	#D0D0D0	#505050	#D0D0D0 #E0E0E0
-client.unfocused	#E0E0E0	#D0D0D0 #505050	#D0D0D0 #E0E0E0
-client.urgent		#F2D1A1 #FB4F75 #505050 #FB4F75 #F2D1A1
+client.unfocused		#E0E0E0	#D0D0D0 #505050	#D0D0D0 #E0E0E0
+client.urgent			#F2D1A1 #FB4F75 #505050 #FB4F75 #F2D1A1
+
 
 
 
