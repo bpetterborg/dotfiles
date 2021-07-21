@@ -121,21 +121,18 @@ bindsym $mod+r mode "リサイズ"
 # bar
 bar {
 	position top
-
-	# When the status_command prints a new line to stdout, swaybar updates.
-	# The default just shows the current date and time.
 	status_command i3status --config ~/.config/i3status.conf
 
 	colors {
-		statusline #404040
+		statusline #414141
 		background #D9D9D9
 		separator #505050FF
 		
-		# name		 	border	  bg	    text
-		focused_workspace 	#75B5AAFF #6A9FB5FF #404040
-		active_workspace	#E0E0E0FF #D0D0D0FF #404040
-		inactive_workspace 	#E0E0E0FF #D0D0D0FF #404040
-		urgent_workspace	#E0E0E0FF #AC4142FF #404040
+		# name		 	border	bg	text
+		focused_workspace 	#75B5AA	#6A9FB5	#404040
+		active_workspace	#E0E0E0	#D0D0D0	#404040
+		inactive_workspace 	#E0E0E0	#D0D0D0	#404040
+		urgent_workspace	#F2D1A1	#F4BF75	#404040
 		
 	}
 }
@@ -145,13 +142,13 @@ bar {
 include @sysconfdir@/sway/config.d/*
 
 gaps inner 16
-
+gaps outer 32
 
 # class			border	bg	text	id	childborder
-client.focused		#75b5aa	#6a9fb5 #303030	#6a9fb5	#75b5aa
-client.focused_inactive #e0e0e0	#d0d0d0	#505050	#d0d0d0 #e0e0e0
-client.unfocused	#e0e0e0	#d0d0d0 #505050	#d0d0d0 #e0e0e0
-client.urgent		#f4bf75 #d0d0d0 #505050 #d0d0d0 #f4bf75
+client.focused		#75B5AA	#6A9FB5 #303030	#6A9FB5	#75B5AA
+client.focused_inactive #E0E0E0	#D0D0D0	#505050	#D0D0D0 #E0E0E0
+client.unfocused	#E0E0E0	#D0D0D0 #505050	#D0D0D0 #E0E0E0
+client.urgent		#F2D1A1 #FB4F75 #505050 #FB4F75 #F2D1A1
 
 
 
