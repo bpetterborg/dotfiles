@@ -1,9 +1,0 @@
-{
-    "window.titleBarStyle": "native",
-    "window.menuBarVisibility": "hidden",
-    "workbench.colorTheme": "Visual Studio Blue",
-    "workbench.startupEditor": "newUntitledFile",
-    "editor.minimap.enabled": false,
-    "git.enableSmartCommit": true,
-    "git.autofetch": true
-}
