@@ -27,4 +27,4 @@ alias reboot="sudo reboot"
 alias systemctl="sudo systemctl"
 cdls() { cd "$@" && ls; }
 
-
+neofetch
